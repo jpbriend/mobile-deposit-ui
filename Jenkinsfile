@@ -15,6 +15,8 @@ node ("linux") {
     stage 'Checkout'
 
     checkout scm
+    sh('git rev-parse HEAD > GIT_COMMIT')
+    git_commit=readFile('GIT_COMMIT')
 
     def mvnHome = tool 'Maven 3.x'
 
@@ -22,7 +24,7 @@ node ("linux") {
     log("Checkout", "Resolved version = ${version}")
 
     stage 'Build'
-    sh "mvn clean package -DBUILD_NUMBER=${env.BUILD_NUMBER} -DBUILD_URL=${env.BUILD_URL} -DGIT_COMMIT={git_commit}"
+    sh "mvn clean package -DBUILD_NUMBER=${env.BUILD_NUMBER} -DBUILD_URL=${env.BUILD_URL} -DGIT_COMMIT=${git_commit}"
 
    stage 'Test Jar'
    //sh "java -jar target/${appname}-${version}.jar"
