@@ -1,6 +1,6 @@
 def projectname='mobile-deposit'
 def appname="${projectname}-ui"
-def downstreamJob="${projectname}-update-release-manifest"
+def downstreamJob="../${projectname}-update-release-manifest"
 
 node ("linux") {
     ensureMaven()
