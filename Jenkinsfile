@@ -30,6 +30,7 @@ node ("linux") {
 
     stage('Test Jar') {
         //sh "java -jar target/${appname}-${version}.jar"
+        sh "echo 'Pseudo Unit test execution'"
     }
 
     stage('Publish') {
